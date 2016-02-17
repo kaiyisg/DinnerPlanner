@@ -18,7 +18,6 @@ public class DinnerModel implements IDinnerModel{
 	 */
 	public DinnerModel(){
 
-		//This is the Standard Western Menu
 		Dish dish1 = new Dish("French toast",Dish.STARTER,"toast.jpg","In a large mixing bowl, beat the eggs. Add the milk, brown sugar and nutmeg; stir well to combine. Soak bread slices in the egg mixture until saturated. Heat a lightly oiled griddle or frying pan over medium high heat. Brown slices on both sides, sprinkle with cinnamon and serve hot.");
 		Ingredient dish1ing1 = new Ingredient("eggs",0.5,"",1);
 		Ingredient dish1ing2 = new Ingredient("milk",30,"ml",6);
@@ -64,7 +63,6 @@ public class DinnerModel implements IDinnerModel{
 		dish3.addIngredient(dish3ing2);
 		dishes.add(dish3);
 
-		//This is the Pan-Asian delicacy menu
 		Dish dish4 = new Dish("Indian Yoghurt Dip", Dish.STARTER, "indianyoghurtdip.jpg", "Mix 1 cup Greek yogurt with 2 tablespoons each chopped cilantro and tomato, 1 tablespoon minced shallot, 1/2 teaspoon each grated ginger and garlic, and salt to taste. Serve with crackers or pita chips.");
 		Ingredient dish4ing1 = new Ingredient("Greek Yoghurt", 300, "ml", 6);
 		Ingredient dish4ing2 = new Ingredient("salt",0.7,"g",3);
@@ -98,7 +96,6 @@ public class DinnerModel implements IDinnerModel{
 		dish6.addIngredient(dish6ing4);
 		dishes.add(dish6);
 
-		//this is the Friendly Vegetarian Menu
 		Dish dish7 = new Dish("Baked Tortilla Chips", Dish.STARTER, "bakedtortillachips","Preheat oven to 180 C. Cut each tortilla into 8 triangular wedges and arrange in a single layer on a baking tray.In a mister or spray bottle, combine the oil and lime juice. Mix well and spray each tortilla wedge until slightly moist. Combine the cumin, chilli powder and salt in a small bowl and sprinkle on the wedges. Bake for about 7 minutes. Rotate the tray and bake for another 8 minutes or until the wedges are crisp, but not too brown. Serve warm or room temperature with salsas, dips or guacamole.");
 		Ingredient dish7ing1 = new Ingredient("flour tortillas", 200, "g", 20);
 		Ingredient dish7ing2 = new Ingredient("lime juice",10,"ml",3);
