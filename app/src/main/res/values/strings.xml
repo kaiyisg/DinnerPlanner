@@ -19,6 +19,16 @@
     String for choose_menu_bg_view.xml
     -->
     <string name="participants">Participants</string>
+    <string name="total_cost">Total Cost: </string>
+    <string name="default_cost">0 kr</string>
+    <string name="choose_menu">Choose Menu</string>
+
+    <!--
+    String for choosing_dishes_view.xml
+    -->
+    <string name="starter">Starter</string>
+    <string name="main_course">Main Course</string>
+    <string name="dessert">Dessert</string>
 
 
 

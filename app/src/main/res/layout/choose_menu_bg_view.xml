@@ -2,13 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/choose_menu_bg_view_id">
+    android:id="@+id/choose_menu_bg_view_id"
+    android:orientation="vertical">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -19,11 +21,46 @@
             android:layout_gravity="center_vertical" />
 
         <Spinner
-            android:layout_width="132dp"
+            android:layout_width="82dp"
             android:layout_height="wrap_content"
             android:id="@+id/spinner"
             android:layout_gravity="center_horizontal"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"
+            android:layout_weight="0.72"
+            android:gravity="left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/total_cost"
+            android:id="@+id/textView6"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/default_cost"
+            android:id="@+id/textView7"
+            android:layout_gravity="center_vertical" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/choose_menu"
+        android:id="@+id/textView8" />
+
+    <View
+        android:layout_width="284dp"
+        android:layout_height="1dp"
+        android:background="@android:color/black"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+
+
 
 </LinearLayout>

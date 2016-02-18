@@ -15,11 +15,15 @@ public class ChooseMenuBgView {
 
         this.view = view;
 
+        //intializing the spinner to hold different numbers
         Spinner dropdown = (Spinner)view.findViewById(R.id.spinner);
         String[] items = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(),
                 android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
+
+        //initializing the textview so i can change the cost inn the future
+        TextView costOfSelections = (TextView)view.findViewById(R.id.textView7);
 
     }
 
