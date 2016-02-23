@@ -14,9 +14,10 @@ public class ChooseMenuActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_menu);
 
+        ChooseMenuBgView chooseMenuBgView = new ChooseMenuBgView(findViewById(R.id.choose_menu_bg_view_id));
+
         DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
 
-        ChooseMenuBgView chooseMenuBgView = new ChooseMenuBgView(findViewById(R.id.choose_menu_bg_view_id));
 
         ChoosingDishesView choosingStartersView = new ChoosingDishesView(findViewById(R.id.starter_choosing_dishes_id));
         ChoosingDishesView choosingMainsView = new ChoosingDishesView(findViewById(R.id.main_choosing_dishes_id));

@@ -18,13 +18,15 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/include" />
+        android:id="@+id/choose_menu_bg_view_id" />
+
 
     <include
         android:id="@+id/starter_choosing_dishes_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         layout="@layout/choosing_dishes_view" />
+
     <include
         android:id="@+id/main_choosing_dishes_id"
         android:layout_width="match_parent"
