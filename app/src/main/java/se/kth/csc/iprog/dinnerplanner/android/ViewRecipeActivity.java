@@ -9,5 +9,8 @@ public class ViewRecipeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_recipe);
+        this.getActionBar().setTitle("DinnerPlanner");
+
+
     }
 }

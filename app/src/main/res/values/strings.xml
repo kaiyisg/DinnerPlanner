@@ -32,4 +32,10 @@
     <string name="create">Create</string>
 
 
+    <!--
+    String for recipe_view.xml
+    -->
+    <string name="ingredients">Ingredients</string>
+
+
 </resources>
