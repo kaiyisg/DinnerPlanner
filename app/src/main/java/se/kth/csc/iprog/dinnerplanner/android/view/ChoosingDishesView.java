@@ -1,7 +1,10 @@
 package se.kth.csc.iprog.dinnerplanner.android.view;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -15,6 +18,7 @@ import android.view.View;
 
 import java.util.Set;
 
+import se.kth.csc.iprog.dinnerplanner.android.ChooseMenuActivity;
 import se.kth.csc.iprog.dinnerplanner.android.R;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
@@ -38,6 +42,7 @@ public class ChoosingDishesView {
             dishCategory.setText("Starter");
             Set<Dish> starterDishes =  model.getDishesOfType(Dish.STARTER);
 
+            //creating container to put into my scroll view
             LinearLayout topLinearLayout = new LinearLayout(view.getContext());
             topLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -45,16 +50,47 @@ public class ChoosingDishesView {
 
                 String dishImageUri = drawable+d.getImage();
                 dishImageUri = dishImageUri.replace(".jpg", "");
-                String dishName = d.getName();
-                double dishCost = d.getPrice();
+                final String dishName = d.getName();
+                final double dishCost = d.getPrice();
 
+                //getting layout of food_icon template to fill up
                 LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View dishView = inflater.inflate(R.layout.food_icon, null);
 
+                //initializing button
                 ImageButton imageButton = (ImageButton)dishView.findViewById(R.id.imageButton5);
                 int imageResource = dishView.getResources().getIdentifier(dishImageUri, null, dishView.getContext().getPackageName());
                 Drawable res = dishView.getContext().getResources().getDrawable(imageResource);
                 imageButton.setImageDrawable(res);
+
+                //configuring button to generate alertdialog
+
+                imageButton.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v1) {
+
+                        String costString = "Cost: ";
+                        costString = costString + String.valueOf(dishCost) + "kr";
+
+                        new AlertDialog.Builder(v1.getContext())
+                                .setTitle(dishName)
+                                .setMessage("costString")
+                                .setPositiveButton("Choose", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+                                })
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // do nothing
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                    }
+                });
+
+
 
                 TextView dishText = (TextView)dishView.findViewById(R.id.textView20);
                 dishText.setText(dishName);
