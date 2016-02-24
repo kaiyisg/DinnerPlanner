@@ -39,5 +39,11 @@
     <string name="instructions">Instructions</string>
     <string name="number_of_people">num pers</string>
 
+    <!--
+    String for food_choosing_dialog.xml
+    -->
+    <string name="choose">Choose</string>
+    <string name="cancel">Cancel</string>
+
 
 </resources>

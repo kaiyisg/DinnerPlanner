@@ -2,17 +2,22 @@ package se.kth.csc.iprog.dinnerplanner.android.view;
 
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.view.View;
 
@@ -59,8 +64,9 @@ public class ChoosingDishesView {
 
                 //initializing button
                 ImageButton imageButton = (ImageButton)dishView.findViewById(R.id.imageButton5);
-                int imageResource = dishView.getResources().getIdentifier(dishImageUri, null, dishView.getContext().getPackageName());
-                Drawable res = dishView.getContext().getResources().getDrawable(imageResource);
+                final int imageResource = dishView.getResources().getIdentifier(
+                        dishImageUri, null, dishView.getContext().getPackageName());
+                final Drawable res = dishView.getContext().getResources().getDrawable(imageResource);
                 imageButton.setImageDrawable(res);
 
                 //configuring button to generate alertdialog
@@ -73,24 +79,52 @@ public class ChoosingDishesView {
                         String costString = "Cost: ";
                         costString = costString + String.valueOf(dishCost) + "kr";
 
-                        new AlertDialog.Builder(v1.getContext())
-                                .setTitle(dishName)
-                                .setMessage("costString")
-                                .setPositiveButton("Choose", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                    }
-                                })
-                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        // do nothing
-                                    }
-                                })
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .show();
+                        final Dialog dialog = new Dialog(v1.getContext());
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.food_choosing_dialog);
+
+                        dialog.setCancelable(true);
+
+                        //set up title
+                        TextView dialogTitle = (TextView)dialog.findViewById(R.id.textView21);
+                        dialogTitle.setText(dishName);
+
+                        //set up image view
+                        FrameLayout foodImageView = (FrameLayout)dialog.findViewById(R.id.foodpicture);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            foodImageView.setBackground(res);
+                        }
+
+                        //set up total cost
+                        TextView totalCostView = (TextView)dialog.findViewById(R.id.textView22);
+
+                        //set up individual cost
+                        TextView indivCostView = (TextView)dialog.findViewById(R.id.textView23);
+                        indivCostView.setText(costString);
+
+                        //set up choose button
+                        Button chooseButton = (Button)dialog.findViewById(R.id.button3);
+                        chooseButton.setOnClickListener(new View.OnClickListener() {
+
+                            @Override
+                            public void onClick(View v2) {
+                                dialog.dismiss();
+                            }
+                        });
+
+                        //set up cancel button
+                        Button cancelButton = (Button)dialog.findViewById(R.id.button4);
+                        cancelButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v2) {
+                                dialog.dismiss();
+                            }
+                        });
+
+                        dialog.show();
+
                     }
                 });
-
-
 
                 TextView dishText = (TextView)dishView.findViewById(R.id.textView20);
                 dishText.setText(dishName);
