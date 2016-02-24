@@ -25,6 +25,7 @@ public class ChooseMenuActivity extends Activity {
 
         DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
 
+        //initializing all the views
         ChooseMenuBgView chooseMenuBgView = new ChooseMenuBgView(findViewById(R.id.choose_menu_bg_view_id), model);
         ChoosingDishesView choosingStartersView =
                 new ChoosingDishesView(findViewById(R.id.starter_choosing_dishes_id), Dish.STARTER, model);

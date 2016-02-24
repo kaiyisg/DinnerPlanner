@@ -38,10 +38,9 @@ public class ChoosingDishesView implements Observer {
     View view;
     int numberOfGuests;
 
-    //attributes to hold the chosen dishes of each category
-    Dish chosenStarterDish;
-    Dish chosenMainDish;
-    Dish chosenDesertDish;
+    //attributes to hold the chosen dishes
+    Dish chosenDish;
+    Set<Dish> dishes;
 
     public ChoosingDishesView(View view, int dishType, DinnerModel model){
 
@@ -49,8 +48,9 @@ public class ChoosingDishesView implements Observer {
 
         //number of guests
         numberOfGuests = model.getNumberOfGuests();
-        Set<Dish> dishes;
 
+        //currently no dish is chosen
+        chosenDish = null;
 
         //setting up layouts for each image button
         horizontalScrollView = (HorizontalScrollView)view.findViewById(R.id.horizontalScrollView);
@@ -73,6 +73,11 @@ public class ChoosingDishesView implements Observer {
 
         }
 
+        initializeRowOfDishes(dishes, chosenDish);
+
+    }
+
+    private void initializeRowOfDishes(Set<Dish> dishes, Dish selectedDish){
 
         //creating container to put into my scroll view
         LinearLayout topLinearLayout = new LinearLayout(view.getContext());
@@ -82,10 +87,15 @@ public class ChoosingDishesView implements Observer {
 
         for(Dish d : dishes){
 
-            topLinearLayout.addView(initializeDishIcon(d, true));
+            if (selectedDish==null){
+                topLinearLayout.addView(initializeDishIcon(d, false));
+            } else if (selectedDish.equals(d)){
+                topLinearLayout.addView(initializeDishIcon(d, true));
+            }else{
+                topLinearLayout.addView(initializeDishIcon(d, false));
+            }
 
         }
-
         horizontalScrollView.addView(topLinearLayout);
     }
 
@@ -168,8 +178,11 @@ public class ChoosingDishesView implements Observer {
 
                     @Override
                     public void onClick(View v2) {
-                        chosenStarterDish = iterDish;
+                        chosenDish = iterDish;
+                        horizontalScrollView.removeAllViews();
+                        initializeRowOfDishes(dishes, chosenDish);
                         dialog.dismiss();
+
                     }
                 });
 
