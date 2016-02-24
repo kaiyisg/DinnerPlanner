@@ -154,7 +154,7 @@ public class ChoosingDishesView implements Observer {
                 costPerFoodString = "(" + String.valueOf(dishCost) + costPerFoodString;
 
                 String costTotalString = "Cost: ";
-                double totalCost = numberOfGuests * dishCost;
+                double totalCost = dinnerModel.getNumberOfGuests() * dishCost;
                 costTotalString = costTotalString + String.valueOf(totalCost);
 
                 final Dialog dialog = new Dialog(v1.getContext());

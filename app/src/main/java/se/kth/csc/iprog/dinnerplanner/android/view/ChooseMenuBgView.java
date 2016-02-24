@@ -15,10 +15,13 @@ import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 public class ChooseMenuBgView implements Observer {
 
     View view;
+    DinnerModel dinnerModel;
+    TextView costOfSelections;
 
     public ChooseMenuBgView (View view, DinnerModel model){
 
         this.view = view;
+        this.dinnerModel = model;
 
         //intializing the spinner to hold different numbers
         Spinner dropdown = (Spinner)view.findViewById(R.id.spinner);
@@ -28,35 +31,37 @@ public class ChooseMenuBgView implements Observer {
         dropdown.setAdapter(adapter);
 
         //changing dropdown selection based on the model number of guests
-        if(model.getNumberOfGuests()<=12){
-            dropdown.setSelection(model.getNumberOfGuests()-1);
+        if(dinnerModel.getNumberOfGuests()<=12){
+            dropdown.setSelection(dinnerModel.getNumberOfGuests()-1);
         }else{
             //throw exception
         }
 
-
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                dinnerModel.setNumberOfGuests(position+1);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
         //initializing the textview so i can change the cost inn the future
-        TextView costOfSelections = (TextView)view.findViewById(R.id.textView7);
+        costOfSelections = (TextView)view.findViewById(R.id.textView7);
 
-        model.addObserver(this);
-
+        dinnerModel.addObserver(this);
     }
 
 
     @Override
     public void update(Observable observable, Object data) {
+
+        DinnerModel updatedModel = (DinnerModel) observable;
+
+        //updating total cost of food items for everyone
+        costOfSelections.setText(String.valueOf(updatedModel.totalCostOfMenu()*
+                updatedModel.getNumberOfGuests())+"kr");
 
     }
 }

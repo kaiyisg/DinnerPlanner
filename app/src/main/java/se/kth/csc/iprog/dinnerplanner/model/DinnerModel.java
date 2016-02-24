@@ -282,4 +282,12 @@ public class DinnerModel extends Observable implements IDinnerModel{
 		notifyObservers(dish);
 	}
 
+
+	public double totalCostOfMenu(){
+		double costOfMenu = 0;
+		for(Dish d:this.fullMenu){
+			costOfMenu+=d.getPrice();
+		}
+		return costOfMenu;
+	}
 }
