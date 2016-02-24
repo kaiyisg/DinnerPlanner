@@ -25,19 +25,21 @@
         android:id="@+id/starter_choosing_dishes_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/choosing_dishes_view" />
+        layout="@layout/choosing_dishes_view"
+        android:layout_marginTop="0dp" />
 
     <include
         android:id="@+id/main_choosing_dishes_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/choosing_dishes_view" />
+        layout="@layout/choosing_dishes_view"
+        android:layout_marginTop="0dp" />
     <include
         android:id="@+id/dessert_choosing_dishes_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         layout="@layout/choosing_dishes_view"
-        />
+        android:layout_marginTop="0dp" />
 
     <Button
         android:layout_width="wrap_content"

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -29,6 +30,8 @@ public class ViewRecipeBgView {
 
     public ViewRecipeBgView(View view){
 
+        this.view = view;
+
         foodItemsCost = (TextView)view.findViewById(R.id.textView7);
         ingredientsImage = (ImageButton)view.findViewById(R.id.imageButton);
         starterImage = (ImageButton)view.findViewById(R.id.imageButton2);
@@ -38,13 +41,7 @@ public class ViewRecipeBgView {
         mainsName = (TextView)view.findViewById(R.id.textView13);
         dessertName = (TextView)view.findViewById(R.id.textView12);
 
-        /*ingredientsImage.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                LayoutInflater vi = (LayoutInflater) view.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            }
-        });*/
 
     }
 

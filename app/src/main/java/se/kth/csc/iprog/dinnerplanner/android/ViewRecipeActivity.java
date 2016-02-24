@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import se.kth.csc.iprog.dinnerplanner.android.view.IngredientsView;
 import se.kth.csc.iprog.dinnerplanner.android.view.ViewRecipeBgView;
 
 public class ViewRecipeActivity extends Activity {
@@ -27,26 +28,22 @@ public class ViewRecipeActivity extends Activity {
 
         ViewRecipeBgView viewRecipeBgView = new ViewRecipeBgView(findViewById(R.id.view_recipe_bg_view_id));
 
+
+
         ingredientsImage.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
-                /*
-                View ingredientsLayout = findViewById(R.id.ingredients_layout_id);
-                LinearLayout viewBgRecipeView = findViewById(R.id.linearLayout2);
-                View ingredientsView = getLayoutInflater().inflate(R.layout.ingredients_view, viewBgRecipeView, false);
-                if(ingredientsLayout == null){
-                    LinearLayout myLayout = (LinearLayout)findViewById(R.id.linearLayout2);
-                    View hiddenInfo = getLayoutInflater().inflate(R.layout.hidden, myLayout, false);
-                    myLayout.addView(hiddenInfo);
-                }*/
-
-
                 LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View v = vi.inflate(R.layout.ingredients_view, null);
                 ViewGroup insertPoint = (ViewGroup) findViewById(R.id.display_stuff_id);
-                insertPoint.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+                insertPoint.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
+                        ViewGroup.LayoutParams.FILL_PARENT));
+
+                IngredientsView ingredientsView = new IngredientsView(findViewById(R.id.ingredients_layout_id));
+
+
             }
         });
 

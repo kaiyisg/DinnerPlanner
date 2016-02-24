@@ -38,7 +38,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/instructions"
         android:id="@+id/textView14"
-        android:layout_marginLeft="210dp" />
+        android:layout_marginLeft="190dp" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -51,7 +51,7 @@
             android:orientation="vertical"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp">
+            android:layout_marginLeft="0dp">
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -79,7 +79,7 @@
             android:orientation="vertical"
             android:layout_width="80dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="30dp">
+            android:layout_marginLeft="20dp">
 
             <FrameLayout
                 android:layout_width="match_parent"

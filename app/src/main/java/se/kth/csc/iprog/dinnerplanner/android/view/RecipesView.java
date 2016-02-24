@@ -11,7 +11,11 @@ import se.kth.csc.iprog.dinnerplanner.android.R;
 
 public class RecipesView {
 
+    View view;
+
     public RecipesView(View view){
+
+        this.view = view;
 
     }
 
