@@ -6,7 +6,7 @@
     android:gravity="center">
 
     <FrameLayout
-        android:layout_width="match_parent"
+        android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="center">
 
@@ -22,5 +22,6 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
         android:id="@+id/textView20"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:lines="2"/>
 </LinearLayout>

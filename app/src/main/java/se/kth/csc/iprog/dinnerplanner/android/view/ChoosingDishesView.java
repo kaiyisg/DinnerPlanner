@@ -35,10 +35,20 @@ public class ChoosingDishesView {
     TextView dishCategory;
     View view;
 
+    //attributes to hold the chosen dishes of each category
+    Dish chosenStarterDish;
+    Dish chosenMainDish;
+    Dish chosenDesertDish;
+
     public ChoosingDishesView(View view, int dishType, DinnerModel model){
 
         this.view = view;
 
+        //getting layout to get number from spinner from choosingmenubgview.xml
+        LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+
+        //setting up layouts for each image button
         horizontalScrollView = (HorizontalScrollView)view.findViewById(R.id.horizontalScrollView);
         dishCategory = (TextView)view.findViewById(R.id.textView9);
 
@@ -51,16 +61,24 @@ public class ChoosingDishesView {
             LinearLayout topLinearLayout = new LinearLayout(view.getContext());
             topLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
 
+
+            //populating the rest of the dishes into the view
+
             for(Dish d : starterDishes){
 
+                final Dish iterDish = d;
                 String dishImageUri = drawable+d.getImage();
                 dishImageUri = dishImageUri.replace(".jpg", "");
                 final String dishName = d.getName();
                 final double dishCost = d.getPrice();
 
                 //getting layout of food_icon template to fill up
-                LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View dishView = inflater.inflate(R.layout.food_icon, null);
+                //making margins for better layouting
+                LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                ll.setMargins(0,0,20,0);
+                dishView.setLayoutParams(ll);
 
                 //initializing button
                 ImageButton imageButton = (ImageButton)dishView.findViewById(R.id.imageButton5);
@@ -76,8 +94,10 @@ public class ChoosingDishesView {
                     @Override
                     public void onClick(View v1) {
 
-                        String costString = "Cost: ";
-                        costString = costString + String.valueOf(dishCost) + "kr";
+                        String costPerFoodString = "kr / Person)";
+                        costPerFoodString = "(" + String.valueOf(dishCost) + costPerFoodString;
+
+                        String costTotalString = "Cost: ";
 
                         final Dialog dialog = new Dialog(v1.getContext());
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -97,10 +117,11 @@ public class ChoosingDishesView {
 
                         //set up total cost
                         TextView totalCostView = (TextView)dialog.findViewById(R.id.textView22);
+                        totalCostView.setText(costTotalString);
 
                         //set up individual cost
                         TextView indivCostView = (TextView)dialog.findViewById(R.id.textView23);
-                        indivCostView.setText(costString);
+                        indivCostView.setText(costPerFoodString);
 
                         //set up choose button
                         Button chooseButton = (Button)dialog.findViewById(R.id.button3);
@@ -108,6 +129,7 @@ public class ChoosingDishesView {
 
                             @Override
                             public void onClick(View v2) {
+                                chosenStarterDish = iterDish;
                                 dialog.dismiss();
                             }
                         });
