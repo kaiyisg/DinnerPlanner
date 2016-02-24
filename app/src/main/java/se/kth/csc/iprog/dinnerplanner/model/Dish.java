@@ -47,7 +47,16 @@ public class Dish {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
+	public double getPrice(){
+		Set<Ingredient> allIngredients = this.getIngredients();
+		double finalPrice = 0.0;
+		for(Ingredient i : allIngredients){
+			finalPrice += i.getPrice();
+		}
+		return finalPrice;
+	}
+
 	public Set<Ingredient> getIngredients(){
 		return ingredients;
 	}

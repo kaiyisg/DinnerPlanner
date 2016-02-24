@@ -126,7 +126,7 @@ public class DinnerModel implements IDinnerModel{
 		dish8.addIngredient(dish8ing7);
 		dishes.add(dish8);
 
-		Dish dish9 = new Dish("Stuffed Strawberries", Dish.DESERT, "stuffedstrawberries.jpg", "Cut the tops off of the strawberries and stand upright on the cut side. Make a cut 3/4 of the way down from the tip of the strawberry towards the bottom. Beat together the cream cheese, sugar, and liqueur until smooth in a mixer or a food processor. Place into a piping bag with a star tip. Pipe into each strawberry and arrange on a serving platter.");
+		Dish dish9 = new Dish("Stuffed Strawberries", Dish.DESERT, "stuffedstrawberry.jpg", "Cut the tops off of the strawberries and stand upright on the cut side. Make a cut 3/4 of the way down from the tip of the strawberry towards the bottom. Beat together the cream cheese, sugar, and liqueur until smooth in a mixer or a food processor. Place into a piping bag with a star tip. Pipe into each strawberry and arrange on a serving platter.");
 		Ingredient dish9ing1 = new Ingredient("Strawberries", 1, "pint", 30);
 		Ingredient dish9ing2 = new Ingredient("confectioners' sugar",50,"g",3);
 		Ingredient dish9ing3 = new Ingredient("Orange Flavored Liquer",2,"tablespoon",6);

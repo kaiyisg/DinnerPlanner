@@ -26,9 +26,12 @@ public class ChooseMenuActivity extends Activity {
         DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
 
         ChooseMenuBgView chooseMenuBgView = new ChooseMenuBgView(findViewById(R.id.choose_menu_bg_view_id));
-        ChoosingDishesView choosingStartersView = new ChoosingDishesView(findViewById(R.id.starter_choosing_dishes_id), Dish.STARTER);
-        ChoosingDishesView choosingMainsView = new ChoosingDishesView(findViewById(R.id.main_choosing_dishes_id), Dish.MAIN);
-        ChoosingDishesView choosingDessertsView = new ChoosingDishesView(findViewById(R.id.dessert_choosing_dishes_id), Dish.DESERT);
+        ChoosingDishesView choosingStartersView =
+                new ChoosingDishesView(findViewById(R.id.starter_choosing_dishes_id), Dish.STARTER, model);
+        ChoosingDishesView choosingMainsView =
+                new ChoosingDishesView(findViewById(R.id.main_choosing_dishes_id), Dish.MAIN, model);
+        ChoosingDishesView choosingDessertsView =
+                new ChoosingDishesView(findViewById(R.id.dessert_choosing_dishes_id), Dish.DESERT, model);
 
         createDinnerButton.setOnClickListener(
 
