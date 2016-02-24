@@ -6,10 +6,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import se.kth.csc.iprog.dinnerplanner.android.R;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 
-public class ChooseMenuBgView {
+public class ChooseMenuBgView implements Observer {
 
     View view;
 
@@ -47,7 +50,13 @@ public class ChooseMenuBgView {
         //initializing the textview so i can change the cost inn the future
         TextView costOfSelections = (TextView)view.findViewById(R.id.textView7);
 
+        model.addObserver(this);
+
     }
 
 
+    @Override
+    public void update(Observable observable, Object data) {
+
+    }
 }

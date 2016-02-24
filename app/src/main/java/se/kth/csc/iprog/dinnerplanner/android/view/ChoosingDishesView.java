@@ -41,13 +41,17 @@ public class ChoosingDishesView implements Observer {
     //attributes to hold the chosen dishes
     Dish chosenDish;
     Set<Dish> dishes;
+    DinnerModel dinnerModel;
+    int dishType;
 
     public ChoosingDishesView(View view, int dishType, DinnerModel model){
 
         this.view = view;
+        this.dinnerModel = model;
+        this.dishType = dishType;
 
         //number of guests
-        numberOfGuests = model.getNumberOfGuests();
+        numberOfGuests = this.dinnerModel.getNumberOfGuests();
 
         //currently no dish is chosen
         chosenDish = null;
@@ -59,25 +63,30 @@ public class ChoosingDishesView implements Observer {
         if(dishType == Dish.STARTER){
 
             dishCategory.setText("Starter");
-            dishes =  model.getDishesOfType(Dish.STARTER);
+            dishes =  this.dinnerModel.getDishesOfType(Dish.STARTER);
 
         }else if(dishType == Dish.MAIN){
 
             dishCategory.setText("Main Course");
-            dishes =  model.getDishesOfType(Dish.MAIN);
+            dishes =  this.dinnerModel.getDishesOfType(Dish.MAIN);
 
         }else{
 
             dishCategory.setText("Dessert");
-            dishes =  model.getDishesOfType(Dish.DESERT);
+            dishes =  this.dinnerModel.getDishesOfType(Dish.DESERT);
 
         }
 
         initializeRowOfDishes(dishes, chosenDish);
 
+        model.addObserver(this);
+
     }
 
     private void initializeRowOfDishes(Set<Dish> dishes, Dish selectedDish){
+
+        //clear all previous views before any calls made here
+        horizontalScrollView.removeAllViews();
 
         //creating container to put into my scroll view
         LinearLayout topLinearLayout = new LinearLayout(view.getContext());
@@ -179,8 +188,9 @@ public class ChoosingDishesView implements Observer {
                     @Override
                     public void onClick(View v2) {
                         chosenDish = iterDish;
-                        horizontalScrollView.removeAllViews();
+                        //horizontalScrollView.removeAllViews();
                         initializeRowOfDishes(dishes, chosenDish);
+                        ChoosingDishesView.this.dinnerModel.addDishToMenu(chosenDish);
                         dialog.dismiss();
 
                     }
@@ -210,5 +220,10 @@ public class ChoosingDishesView implements Observer {
     @Override
     public void update(Observable observable, Object data) {
 
+        DinnerModel updatedModel = (DinnerModel) observable;
+        initializeRowOfDishes(updatedModel.getDishesOfType(dishType),
+                updatedModel.getSelectedDish(dishType));
+
     }
+
 }

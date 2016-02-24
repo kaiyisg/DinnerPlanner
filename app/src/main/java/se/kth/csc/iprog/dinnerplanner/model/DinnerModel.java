@@ -1,9 +1,11 @@
 package se.kth.csc.iprog.dinnerplanner.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Observable;
 import java.util.Set;
 
-public class DinnerModel implements IDinnerModel{
+public class DinnerModel extends Observable implements IDinnerModel{
 
 	private int guests;
 
@@ -187,6 +189,8 @@ public class DinnerModel implements IDinnerModel{
 
 	public void setNumberOfGuests(int numberOfGuests){
 		this.guests = numberOfGuests;
+		setChanged();
+		notifyObservers(numberOfGuests);
 	}
 
 	/**
@@ -194,13 +198,21 @@ public class DinnerModel implements IDinnerModel{
 	 * returns null if there are no dishes on the menu for the selected type
 	 */
 	public Dish getSelectedDish(int type){
+
+		for(Dish d : this.fullMenu){
+			if(d.getType()==type){
+				return d;
+			}
+		}
+
+		return null;
+		/*
 		while(fullMenu.iterator().hasNext()){
-			Dish currentDish = dishes.iterator().next();
+			Dish currentDish = fullMenu.iterator().next();
 			if(currentDish.getType()==type){
 				return currentDish;
 			}
-		}
-		return null;
+		}*/
 	}
 
 	/**
@@ -212,6 +224,8 @@ public class DinnerModel implements IDinnerModel{
 
 	public void setFullMenu(Set<Dish> newFullMenu){
 		this.fullMenu = newFullMenu;
+		setChanged();
+		notifyObservers(newFullMenu);
 	}
 
 	/**
@@ -243,13 +257,15 @@ public class DinnerModel implements IDinnerModel{
 	 * it is removed from the menu and the new one added.
 	 */
 	public void addDishToMenu(Dish dish){
-		while(fullMenu.iterator().hasNext()){
-			Dish currentDish = fullMenu.iterator().next();
-			if(currentDish.getType()==dish.getType()){
-				fullMenu.iterator().remove();
+
+		for(Dish d : new ArrayList<Dish>(fullMenu)){
+			if(d.getType()==dish.getType()){
+				fullMenu.remove(d);
 			}
 		}
 		fullMenu.add(dish);
+		setChanged();
+		notifyObservers(dish);
 	}
 
 	/**
@@ -262,6 +278,8 @@ public class DinnerModel implements IDinnerModel{
 				fullMenu.iterator().remove();
 			}
 		}
+		setChanged();
+		notifyObservers(dish);
 	}
 
 }

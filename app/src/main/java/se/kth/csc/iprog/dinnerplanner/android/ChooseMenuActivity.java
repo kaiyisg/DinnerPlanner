@@ -6,12 +6,15 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import se.kth.csc.iprog.dinnerplanner.android.view.ChooseMenuBgView;
 import se.kth.csc.iprog.dinnerplanner.android.view.ChoosingDishesView;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 
-public class ChooseMenuActivity extends Activity {
+public class ChooseMenuActivity extends Activity implements Observer {
 
     Button createDinnerButton;
 
@@ -49,4 +52,8 @@ public class ChooseMenuActivity extends Activity {
 
     }
 
+    @Override
+    public void update(Observable observable, Object data) {
+
+    }
 }
