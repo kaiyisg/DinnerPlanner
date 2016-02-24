@@ -36,6 +36,8 @@
     String for recipe_view.xml
     -->
     <string name="ingredients">Ingredients</string>
+    <string name="instructions">Instructions</string>
+    <string name="number_of_people">num pers</string>
 
 
 </resources>
