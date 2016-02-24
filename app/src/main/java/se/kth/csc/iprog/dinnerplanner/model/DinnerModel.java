@@ -137,7 +137,7 @@ public class DinnerModel implements IDinnerModel{
 		dish9.addIngredient(dish9ing4);
 		dishes.add(dish9);
 
-		this.guests = 0;
+		this.guests = 1;
 	}
 
 	/**
