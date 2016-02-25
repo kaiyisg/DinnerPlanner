@@ -233,10 +233,17 @@ public class DinnerModel extends Observable implements IDinnerModel{
 	 */
 	public Set<Ingredient> getAllIngredients(){
 		Set<Ingredient> allIngredients = new HashSet<Ingredient>();
+
+		for(Dish d:fullMenu){
+			for(Ingredient i:d.getIngredients()){
+				allIngredients.add(i);
+			}
+		}
+		/*
 		while(fullMenu.iterator().hasNext()){
 			Set<Ingredient> currentDishIngredients = fullMenu.iterator().next().getIngredients();
 			allIngredients.addAll(currentDishIngredients);
-		}
+		}*/
 		return allIngredients;
 	}
 
@@ -244,12 +251,11 @@ public class DinnerModel extends Observable implements IDinnerModel{
 	 * Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	 */
 	public float getTotalMenuPrice(){
-		double totalMenuPrice = 0.0;
-		Set<Ingredient> allIngredients = this.getAllIngredients();
-		while(allIngredients.iterator().hasNext()){
-			totalMenuPrice += allIngredients.iterator().next().getPrice();
+		double costOfMenu = 0;
+		for(Dish d:this.fullMenu){
+			costOfMenu+=d.getPrice();
 		}
-		return (float)totalMenuPrice * this.guests;
+		return (float)costOfMenu * this.guests;
 	}
 
 	/**

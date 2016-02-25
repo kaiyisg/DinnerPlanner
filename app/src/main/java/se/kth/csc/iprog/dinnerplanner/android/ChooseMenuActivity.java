@@ -1,5 +1,7 @@
 package se.kth.csc.iprog.dinnerplanner.android;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
@@ -14,9 +16,10 @@ import se.kth.csc.iprog.dinnerplanner.android.view.ChoosingDishesView;
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 
-public class ChooseMenuActivity extends Activity implements Observer {
+public class ChooseMenuActivity extends Activity {
 
     Button createDinnerButton;
+    DinnerModel dinnerModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,16 +29,16 @@ public class ChooseMenuActivity extends Activity implements Observer {
 
         createDinnerButton = (Button)findViewById(R.id.button2);
 
-        DinnerModel model = ((DinnerPlannerApplication) this.getApplication()).getModel();
+        dinnerModel = ((DinnerPlannerApplication) this.getApplication()).getModel();
 
         //initializing all the views
-        ChooseMenuBgView chooseMenuBgView = new ChooseMenuBgView(findViewById(R.id.choose_menu_bg_view_id), model);
+        ChooseMenuBgView chooseMenuBgView = new ChooseMenuBgView(findViewById(R.id.choose_menu_bg_view_id), dinnerModel);
         ChoosingDishesView choosingStartersView =
-                new ChoosingDishesView(findViewById(R.id.starter_choosing_dishes_id), Dish.STARTER, model);
+                new ChoosingDishesView(findViewById(R.id.starter_choosing_dishes_id), Dish.STARTER, dinnerModel);
         ChoosingDishesView choosingMainsView =
-                new ChoosingDishesView(findViewById(R.id.main_choosing_dishes_id), Dish.MAIN, model);
+                new ChoosingDishesView(findViewById(R.id.main_choosing_dishes_id), Dish.MAIN, dinnerModel);
         ChoosingDishesView choosingDessertsView =
-                new ChoosingDishesView(findViewById(R.id.dessert_choosing_dishes_id), Dish.DESERT, model);
+                new ChoosingDishesView(findViewById(R.id.dessert_choosing_dishes_id), Dish.DESERT, dinnerModel);
 
         createDinnerButton.setOnClickListener(
 
@@ -43,17 +46,23 @@ public class ChooseMenuActivity extends Activity implements Observer {
 
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(v.getContext(), ViewRecipeActivity.class);
-                        startActivity(intent);
+                        if(dinnerModel.getFullMenu().size()==0){
+
+                            new AlertDialog.Builder(v.getContext())
+                                    .setTitle("Select a Dish")
+                                    .setMessage("Please minimally select a dish to proceed!")
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                        }
+                                    }).show();
+                        }else{
+                            Intent intent = new Intent(v.getContext(), ViewRecipeActivity.class);
+                            startActivity(intent);
+                        }
                     }
                 }
         );
 
-
-    }
-
-    @Override
-    public void update(Observable observable, Object data) {
 
     }
 }
