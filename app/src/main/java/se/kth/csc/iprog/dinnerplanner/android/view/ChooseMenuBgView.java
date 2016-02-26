@@ -37,16 +37,6 @@ public class ChooseMenuBgView implements Observer {
             //throw exception
         }
 
-        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                dinnerModel.setNumberOfGuests(position+1);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
         //initializing the textview so i can change the cost inn the future
         costOfSelections = (TextView)view.findViewById(R.id.textView7);
 

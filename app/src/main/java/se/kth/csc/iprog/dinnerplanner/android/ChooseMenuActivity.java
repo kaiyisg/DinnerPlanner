@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -20,6 +22,7 @@ public class ChooseMenuActivity extends Activity {
 
     Button createDinnerButton;
     DinnerModel dinnerModel;
+    Spinner dropdown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,18 @@ public class ChooseMenuActivity extends Activity {
                 new ChoosingDishesView(findViewById(R.id.main_choosing_dishes_id), Dish.MAIN, dinnerModel);
         ChoosingDishesView choosingDessertsView =
                 new ChoosingDishesView(findViewById(R.id.dessert_choosing_dishes_id), Dish.DESERT, dinnerModel);
+
+        Spinner dropdown = (Spinner)findViewById(R.id.spinner);
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                dinnerModel.setNumberOfGuests(position+1);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
 
         createDinnerButton.setOnClickListener(
 

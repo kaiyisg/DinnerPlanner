@@ -76,28 +76,6 @@ public class ViewRecipeBgView {
             }
         }
 
-        //initializing ingredients button
-        ingredientsImage.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v1) {
-
-
-                //not sure why i cannot put border
-                /*
-                FrameLayout background = (FrameLayout)recipeBgView.findViewById(R.id.ingredients_image);
-                int bg = recipeBgView.getResources().getIdentifier(
-                        "@drawable/border_thin", null, recipeBgView.getContext().getPackageName());
-                Drawable bgRes = recipeBgView.getContext().getResources().getDrawable(bg);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    background.setBackground(bgRes);
-                }*/
-
-            }
-
-        });
-
-
     }
 
     private Drawable setUpImageView(Dish d){

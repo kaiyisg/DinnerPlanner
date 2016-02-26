@@ -19,16 +19,6 @@ public class WelcomeView {
         this.view = view;
 
 
-        startButton = (Button)view.findViewById(R.id.button);
-
-        startButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ChooseMenuActivity.class);
-                view.getContext().startActivity(intent);
-            }
-        });
 
 
     }
